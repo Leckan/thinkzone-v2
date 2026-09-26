@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AnalyticsConsent } from "@/components/analytics-consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <AnalyticsConsent
+          posthogKey={process.env.NEXT_PUBLIC_POSTHOG_KEY ?? ""}
+          posthogHost={process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com"}
+          googleAnalyticsId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? ""}
+        />
+      </body>
     </html>
   );
 }

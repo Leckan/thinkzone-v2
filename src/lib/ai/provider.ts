@@ -1,7 +1,10 @@
+import type { OpportunityAssessment } from "@/lib/assessment";
+
 export type AssistantTurn = { role: "user" | "assistant"; content: string };
 
 export interface AIProvider {
   respond(turns: AssistantTurn[]): Promise<string>;
+  assess(input: OpportunityAssessment): Promise<string>;
 }
 
 export class AIConfigurationError extends Error {}
