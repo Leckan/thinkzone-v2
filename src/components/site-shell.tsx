@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 const links = [
@@ -12,11 +13,11 @@ const links = [
 ] as const;
 
 export function SiteHeader() {
-  return <><div className="announcement"><span className="announcement-dot" /> Independent AI venture studio <span className="announcement-divider">/</span> Building what comes next</div><header className="nav-wrap"><Link className="brand" href="/" aria-label="Think Zone home"><span className="brand-mark">tz<span>.</span></span><span className="brand-name">THINK<br />ZONE</span></Link><nav className="main-nav" aria-label="Main navigation">{links.map(([name, href]) => <Link href={href} key={href}>{name}</Link>)}</nav><Link className="nav-cta" href="/contact">Build with us <span aria-hidden="true" className="arrow">↗</span></Link><details className="mobile-menu"><summary aria-label="Open navigation"><span /><span /></summary><nav aria-label="Mobile navigation">{links.map(([name, href]) => <Link href={href} key={href}>{name}</Link>)}<Link href="/contact">Build with us ↗</Link></nav></details></header></>;
+  return <><div className="announcement"><span className="announcement-dot" /> Independent AI venture studio <span className="announcement-divider">/</span> Building what comes next</div><header className="nav-wrap"><Link className="brand" href="/" aria-label="Think Zone home"><Image className="brand-logo" src="/brand/thinkzone-logo.svg" alt="Think Zone Technology" width={150} height={54} priority /></Link><nav className="main-nav" aria-label="Main navigation">{links.map(([name, href]) => <Link href={href} key={href}>{name}</Link>)}</nav><Link className="nav-cta" href="/contact">Build with us <span aria-hidden="true" className="arrow">↗</span></Link><details className="mobile-menu"><summary aria-label="Open navigation"><span /><span /></summary><nav aria-label="Mobile navigation">{links.map(([name, href]) => <Link href={href} key={href}>{name}</Link>)}<Link href="/contact">Build with us ↗</Link></nav></details></header></>;
 }
 
 export function SiteFooter() {
-  return <footer className="footer"><Link className="brand footer-brand" href="/"><span className="brand-mark">tz<span>.</span></span><span className="brand-name">THINK<br />ZONE</span></Link><p>Intelligent products.<br />Real-world impact.</p><div className="footer-links"><Link href="/solutions">Solutions</Link><Link href="/products">Products</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></div><span className="copyright">© 2026 THINK ZONE LLC</span></footer>;
+  return <footer className="footer"><Link className="brand footer-brand" href="/" aria-label="Think Zone home"><Image className="brand-logo" src="/brand/thinkzone-logo.svg" alt="Think Zone Technology" width={150} height={54} /></Link><p>Intelligent products.<br />Real-world impact.</p><div className="footer-links"><Link href="/solutions">Solutions</Link><Link href="/products">Products</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></div><span className="copyright">© 2026 THINK ZONE LLC</span></footer>;
 }
 
 export function PageShell({ children }: { children: React.ReactNode }) {
