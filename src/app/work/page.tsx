@@ -1,0 +1,11 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { PageHero, PageShell, SectionIntro } from "@/components/site-shell";
+import { getWorkEntries } from "@/sanity/lib/content";
+
+export const metadata: Metadata = { title: "Work", description: "A view into Think Zone's product explorations and applied AI work.", alternates: { canonical: "/work" } };
+
+export default async function WorkPage() {
+  const work = await getWorkEntries();
+  return <PageShell><main><PageHero eyebrow="WORK / PRODUCTS IN MOTION" title="A studio is defined" highlight="by what it builds." description="Our work spans products we are building, ideas we are testing, and the systems we explore. We share the work honestly as it evolves." action="Explore our products" href="/products"/><section className="inner-section"><SectionIntro eyebrow="SELECTED EXPLORATIONS" title={<>Real problems.<br /><span>Thoughtful experiments.</span></>} copy="This is a view into the questions and product directions currently shaping Think Zone. We will add case studies as work is ready to share."/><div className="work-grid">{work.map((entry, i) => <article className="work-card" key={entry.slug}><Link className="work-card-link" href={`/work/${entry.slug}`} aria-label={`Read about ${entry.title}`}><div className={`work-art art-${i % 3 + 1}`}><span>THINK ZONE / 0{i + 1}</span><b>{["↗", "⌘", "◎"][i % 3]}</b><small>{entry.type.toUpperCase()}</small></div></Link><div className="work-info"><div><span>{entry.type.toUpperCase()}</span><span>{entry.status}</span></div><h3><Link href={`/work/${entry.slug}`}>{entry.title}</Link></h3><p>{entry.summary}</p><Link className="insight-link" href={`/work/${entry.slug}`}>Explore this work <span>↗</span></Link></div></article>)}</div><p className="work-disclaimer">These are Think Zone product and research explorations. No client results or performance claims are implied.</p></section><section className="simple-cta"><div className="section-kicker"><span>WORK WITH US</span></div><h2>Your challenge could<br />be our <span>next build.</span></h2><Link className="button button-dark" href="/contact">Tell us what you&apos;re working on <span className="arrow">↗</span></Link></section></main></PageShell>;
+}

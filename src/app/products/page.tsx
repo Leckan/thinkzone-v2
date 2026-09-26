@@ -1,0 +1,10 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { PageHero, PageShell, SectionIntro } from "@/components/site-shell";
+import { products } from "@/lib/content";
+
+export const metadata: Metadata = { title: "AI Products", description: "Explore the intelligent products Think Zone is building for real estate, learning, and business.", alternates: { canonical: "/products" } };
+
+export default function ProductsPage() {
+  return <PageShell><main><PageHero eyebrow="PRODUCTS / OUR VENTURE PORTFOLIO" title="Useful by design." highlight="Built to do real work." description="Think Zone builds and owns focused AI products for people and industries ready for a better way." action="Explore our approach" href="/about" /><section className="inner-section products-section"><SectionIntro eyebrow="PRODUCTS IN MOTION" title={<>Ideas becoming<br /><span>intelligent products.</span></>} copy="Each product starts with a real problem. We research, experiment, and build toward a product experience people can trust."/><div className="product-grid">{products.map((product, i) => <article className="product-card" key={product.slug}><div className={`product-art ${product.color}`}><div className="product-art-top"><span>THINK ZONE / 0{i + 1}</span><span className="product-status"><i /> {product.status}</span></div><span className="product-symbol">{["↗", "⌘", "⌂", "✳", "◎"][i]}</span><span className="product-art-index">{product.category.toUpperCase()}</span></div><div className="product-info"><div className="product-category">{product.category.toUpperCase()}</div><h3>{product.name}</h3><p>{product.summary}</p><Link href={`/products/${product.slug}`}>Explore product <span className="arrow">↗</span></Link></div></article>)}</div></section><section className="simple-cta"><div className="section-kicker"><span>BUILD WITH US</span></div><h2>Have a product idea<br />worth <span>making real?</span></h2><Link className="button button-dark" href="/contact">Start a conversation <span className="arrow">↗</span></Link></section></main></PageShell>;
+}

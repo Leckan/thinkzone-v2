@@ -1,0 +1,5 @@
+import type { Metadata } from "next";
+import { PageShell, PageHero } from "@/components/site-shell";
+import { AssessmentForm } from "./assessment-form";
+export const metadata: Metadata = { title: "AI Opportunity Assessment", description: "A short self-assessment to help frame your AI opportunity and possible next step.", alternates: { canonical: "/assessment" } };
+export default function AssessmentPage() { return <PageShell><main><PageHero eyebrow="AI OPPORTUNITY / SELF-ASSESSMENT" title="Find a useful" highlight="place to start." description="A short set of questions to help frame the opportunity and think about a practical next step. No sign-up required." action="Begin the assessment" href="#assessment"/><section className="assessment-section" id="assessment"><div className="assessment-intro"><div className="section-kicker"><span>TAKES ABOUT 2 MINUTES</span></div><h2>A clearer question<br />is a good <span>first step.</span></h2><p>Think about one workflow, product idea, or business challenge as you answer. Your responses are used only to show an on-page reflection.</p></div><AssessmentForm /></section></main></PageShell>; }
