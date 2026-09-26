@@ -6,6 +6,7 @@ import { PortableContent } from "@/components/portable-content";
 import { fallbackWork, getWorkEntry } from "@/sanity/lib/content";
 
 export function generateStaticParams() { return fallbackWork.map(({ slug }) => ({ slug })); }
+export const dynamicParams = true;
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const entry = await getWorkEntry(slug);
   return entry ? { title: entry.title, description: entry.summary, alternates: { canonical: `/work/${entry.slug}` } } : {};
