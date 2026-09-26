@@ -2,6 +2,8 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { getDb } from "@/db";
 import { leads } from "@/db/schema";
+import { readJsonBody } from "@/lib/http/read-json-body";
+import { checkRequestRateLimit } from "@/lib/http/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -20,14 +22,16 @@ export async function POST(request: Request) {
     return Response.json({ error: "Request origin could not be verified." }, { status: 403 });
   }
 
-  const contentLength = Number(request.headers.get("content-length") ?? 0);
-  if (contentLength > 12_000) return Response.json({ error: "Request is too large." }, { status: 413 });
-
-  let body: unknown;
-  try { body = await request.json(); } catch { return Response.json({ error: "Please submit a valid form." }, { status: 400 }); }
-  const parsed = leadInput.safeParse(body);
+  const body = await readJsonBody(request, 12_000);
+  if (!body.ok) return Response.json({ error: body.status === 413 ? "Request is too large." : "Please submit a valid form." }, { status: body.status });
+  const parsed = leadInput.safeParse(body.value);
   if (!parsed.success) return Response.json({ error: "Please check the required fields and try again." }, { status: 400 });
   if (parsed.data.website) return Response.json({ ok: true }, { status: 201 });
+
+  const limit = checkRequestRateLimit(request, { namespace: "leads", maxRequests: 5, windowMs: 15 * 60 * 1000 });
+  if (!limit.allowed) {
+    return Response.json({ error: "Several inquiries were submitted recently. Please try again later." }, { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } });
+  }
 
   const hasDatabase = Boolean(process.env.DATABASE_URL);
   const hasEmail = Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM);

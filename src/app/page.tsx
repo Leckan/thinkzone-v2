@@ -1,27 +1,12 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import type { Metadata } from "next";
+import { products, solutions } from "@/lib/content";
 
 export const metadata: Metadata = { alternates: { canonical: "https://thinkzone.tech" } };
 
-const products = [
-  { number: "01", slug: "real-estate-deal-analyzer", name: "Real Estate Deal Analyzer", category: "INVESTMENT INTELLIGENCE", status: "In development", copy: "Know the numbers before you make the move. Analyze a deal with the context investors need to act with confidence.", mark: "↗", tone: "mint" },
-  { number: "02", slug: "ai-space-revamp", name: "AI Space Revamp", category: "PROPERTY VISUALIZATION", status: "Coming soon", copy: "See what a space could become. Turn property photos into compelling redesign concepts in minutes.", mark: "⌘", tone: "sand" },
-  { number: "03", slug: "ai-fix-flip-coach", name: "Fix & Flip Coach", category: "REAL ESTATE AI", status: "Research phase", copy: "A smarter renovation partner for scoping projects, estimating costs, and pressure-testing your next flip.", mark: "⌂", tone: "blue" },
-  { number: "04", slug: "skill-mastery-ai", name: "Skill Mastery AI", category: "LEARNING SYSTEMS", status: "Experimental", copy: "Personalized practice and progress paths that make meaningful skill-building part of the daily routine.", mark: "✳", tone: "lilac" },
-  { number: "05", slug: "ai-digital-twin", name: "AI Digital Twin", category: "COMPANY EXPERIMENT", status: "Experimental", copy: "An experimental AI representation of Think Zone, exploring new ways to interact with company knowledge and ideas.", mark: "◎", tone: "mint" },
-];
-
-const solutions = [
-  ["01", "ai-strategy", "AI strategy", "Find the highest-value opportunities and turn them into a practical roadmap."],
-  ["02", "ai-automation", "AI automation", "Give repetitive work to intelligent workflows built around your real operations."],
-  ["03", "ai-agents", "AI agents", "Build capable assistants that can reason, use tools, and get work done."],
-  ["04", "ai-product-development", "AI product development", "Take an idea from first prototype to a reliable product people can use."],
-  ["05", "data-ai-engineering", "Data & AI engineering", "Create the data foundations and integrations that make AI useful."],
-  ["06", "ai-mvp-development", "AI MVP development", "Validate a focused product idea quickly, with a clear path to production."],
-];
-
 const Arrow = () => <span aria-hidden="true" className="arrow">↗</span>;
+const productMarks = ["↗", "⌘", "⌂", "✳", "◎"];
 
 export default function Home() {
   return (
@@ -59,7 +44,26 @@ export default function Home() {
 
       <section className="section products-section" id="products">
         <div className="section-heading"><div><div className="section-kicker"><span>02</span> OUR VENTURE PORTFOLIO</div><h2>Products we&apos;re<br /><span>putting into the world.</span></h2></div><p>We build and own focused AI products for real people, real work, and industries ready for a better way.</p></div>
-        <div className="product-grid">{products.map((product) => <article className="product-card" key={product.number}><div className={`product-art ${product.tone}`}><div className="product-art-top"><span>THINK ZONE / {product.number}</span><span className="product-status"><i /> {product.status}</span></div><span className="product-symbol">{product.mark}</span><span className="product-art-index">PRODUCT / {product.number}</span></div><div className="product-info"><div className="product-category">{product.category}</div><h3>{product.name}</h3><p>{product.copy}</p><Link href={`/products/${product.slug}`}>Explore product <Arrow /></Link></div></article>)}</div>
+        <div className="product-grid">
+          {products.map((product, index) => {
+            const number = String(index + 1).padStart(2, "0");
+            return (
+              <article className="product-card" key={product.slug}>
+                <div className={`product-art ${product.color}`}>
+                  <div className="product-art-top"><span>THINK ZONE / {number}</span><span className="product-status"><i /> {product.status}</span></div>
+                  <span className="product-symbol">{productMarks[index % productMarks.length]}</span>
+                  <span className="product-art-index">PRODUCT / {number}</span>
+                </div>
+                <div className="product-info">
+                  <div className="product-category">{product.category}</div>
+                  <h3>{product.name}</h3>
+                  <p>{product.summary}</p>
+                  <Link href={`/products/${product.slug}`}>Explore product <Arrow /></Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
         <div className="portfolio-foot"><span>OUR PORTFOLIO IS ALWAYS IN MOTION.</span><a href="#lab">Inside the AI Lab <span>↗</span></a></div>
       </section>
 
@@ -68,7 +72,7 @@ export default function Home() {
         <div className="real-estate-copy"><div className="section-kicker light"><span>03</span> AN INDUSTRY WE KNOW</div><h2>Real estate,<br />reimagined with <span>AI.</span></h2><p>We&apos;re creating a new generation of tools to help property investors see opportunities sooner, understand the numbers clearly, and move with conviction.</p><div className="re-capabilities"><span>Deal analysis</span><span>Property intelligence</span><span>Investor assistants</span><span>Workflow automation</span></div><Link className="button button-light" href="/industries">Explore real estate AI <Arrow /></Link></div>
       </section>
 
-      <section className="section solutions-section" id="solutions"><div className="section-heading"><div><div className="section-kicker"><span>04</span> SELECTIVE PARTNERSHIPS</div><h2>From first question<br />to <span>working system.</span></h2></div><p>We partner with ambitious teams to find the right problem, build the right thing, and get it working in the real world.</p></div><div className="solutions-grid">{solutions.map(([number, slug, title, copy]) => <Link className="solution-card" href={`/solutions/${slug}`} key={number}><span className="solution-number">{number}</span><span className="solution-arrow">↗</span><h3>{title}</h3><p>{copy}</p></Link>)}</div></section>
+      <section className="section solutions-section" id="solutions"><div className="section-heading"><div><div className="section-kicker"><span>04</span> SELECTIVE PARTNERSHIPS</div><h2>From first question<br />to <span>working system.</span></h2></div><p>We partner with ambitious teams to find the right problem, build the right thing, and get it working in the real world.</p></div><div className="solutions-grid">{solutions.map((solution, index) => <Link className="solution-card" href={`/solutions/${solution.slug}`} key={solution.slug}><span className="solution-number">{String(index + 1).padStart(2, "0")}</span><span className="solution-arrow">↗</span><h3>{solution.name}</h3><p>{solution.summary}</p></Link>)}</div></section>
 
       <section className="lab-section" id="lab"><div className="lab-orb"><div className="lab-orb-core">tz</div><span className="lab-ring ring-one"/><span className="lab-ring ring-two"/><span className="lab-ring ring-three"/><i className="lab-point point-one"/><i className="lab-point point-two"/><i className="lab-point point-three"/></div><div className="lab-copy"><div className="section-kicker"><span>05</span> THINK ZONE / R&amp;D</div><h2>Curiosity is part<br />of the <span>process.</span></h2><p>The AI Lab is where we test new ideas, explore emerging technology, and find the next useful thing. Some experiments become products. All of them make us better builders.</p><Link className="text-link" href="/ai-lab">Explore the AI Lab <span>→</span></Link></div><div className="lab-coordinate">RESEARCH / EXPERIMENT / REPEAT</div></section>
 
