@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { BrandFavicon } from "@/components/brand-favicon";
 
 const links = [
   ["Solutions", "/solutions"],
@@ -25,7 +26,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 }
 
 export function PageHero({ eyebrow, title, highlight, description, action = "Start a conversation", href = "/contact" }: { eyebrow: string; title: string; highlight?: string; description: string; action?: string; href?: string }) {
-  return <section className="inner-hero"><div className="inner-hero-copy"><div className="section-kicker"><span>↗</span>{eyebrow}</div><h1>{title}{highlight && <><br /><span>{highlight}</span></>}</h1><p>{description}</p><Link className="button button-dark" href={href}>{action} <span aria-hidden="true" className="arrow">↗</span></Link></div><div className="inner-hero-art" aria-hidden="true"><span className="inner-orbit inner-orbit-a"/><span className="inner-orbit inner-orbit-b"/><span className="inner-orbit inner-orbit-c"/><span className="inner-art-core">tz</span><span className="inner-art-caption">THINK ZONE / SYSTEMS IN MOTION</span></div></section>;
+  return <section className="inner-hero"><div className="inner-hero-copy"><div className="section-kicker"><span>↗</span>{eyebrow}</div><h1>{title}{highlight && <><br /><span>{highlight}</span></>}</h1><p>{description}</p><Link className="button button-dark" href={href}>{action} <span aria-hidden="true" className="arrow">↗</span></Link></div><div className="inner-hero-art" aria-hidden="true"><span className="inner-orbit inner-orbit-a"/><span className="inner-orbit inner-orbit-b"/><span className="inner-orbit inner-orbit-c"/><span className="inner-art-core"><BrandFavicon inverse /></span><span className="inner-art-caption">THINK ZONE / SYSTEMS IN MOTION</span></div></section>;
 }
 
 export function SectionIntro({ eyebrow, title, copy }: { eyebrow: string; title: ReactNode; copy?: string }) {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
+import { BrandFavicon } from "@/components/brand-favicon";
 import type { Metadata } from "next";
 import { products, solutions } from "@/lib/content";
 
@@ -26,7 +27,7 @@ export default function Home() {
           <div className="visual-top"><span>THINK ZONE / SYSTEM 001</span><span className="live"><i /> LIVE THINKING</span></div>
           <div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" />
           <div className="visual-cross cross-a">+</div><div className="visual-cross cross-b">+</div><div className="visual-cross cross-c">+</div>
-          <div className="node node-center"><span className="node-glyph">tz</span><span>REAL-WORLD<br />INTELLIGENCE</span></div>
+          <div className="node node-center"><BrandFavicon className="node-glyph" inverse /><span>REAL-WORLD<br />INTELLIGENCE</span></div>
           <div className="node node-one"><b>01</b><span>DATA</span></div><div className="node node-two"><b>02</b><span>DECISIONS</span></div><div className="node node-three"><b>03</b><span>ACTION</span></div>
           <div className="visual-label label-a">IDEA → PRODUCT</div><div className="visual-label label-b">BUILT FOR IMPACT</div>
           <div className="visual-bottom"><span>THINK CLEARER. BUILD BETTER.</span><span>37° 46′ 49.6″ N</span></div>
@@ -74,7 +75,7 @@ export default function Home() {
 
       <section className="section solutions-section" id="solutions"><div className="section-heading"><div><div className="section-kicker"><span>04</span> SELECTIVE PARTNERSHIPS</div><h2>From first question<br />to <span>working system.</span></h2></div><p>We partner with ambitious teams to find the right problem, build the right thing, and get it working in the real world.</p></div><div className="solutions-grid">{solutions.map((solution, index) => <Link className="solution-card" href={`/solutions/${solution.slug}`} key={solution.slug}><span className="solution-number">{String(index + 1).padStart(2, "0")}</span><span className="solution-arrow">↗</span><h3>{solution.name}</h3><p>{solution.summary}</p></Link>)}</div></section>
 
-      <section className="lab-section" id="lab"><div className="lab-orb"><div className="lab-orb-core">tz</div><span className="lab-ring ring-one"/><span className="lab-ring ring-two"/><span className="lab-ring ring-three"/><i className="lab-point point-one"/><i className="lab-point point-two"/><i className="lab-point point-three"/></div><div className="lab-copy"><div className="section-kicker"><span>05</span> THINK ZONE / R&amp;D</div><h2>Curiosity is part<br />of the <span>process.</span></h2><p>The AI Lab is where we test new ideas, explore emerging technology, and find the next useful thing. Some experiments become products. All of them make us better builders.</p><Link className="text-link" href="/ai-lab">Explore the AI Lab <span>→</span></Link></div><div className="lab-coordinate">RESEARCH / EXPERIMENT / REPEAT</div></section>
+      <section className="lab-section" id="lab"><div className="lab-orb"><div className="lab-orb-core"><BrandFavicon inverse /></div><span className="lab-ring ring-one"/><span className="lab-ring ring-two"/><span className="lab-ring ring-three"/><i className="lab-point point-one"/><i className="lab-point point-two"/><i className="lab-point point-three"/></div><div className="lab-copy"><div className="section-kicker"><span>05</span> THINK ZONE / R&amp;D</div><h2>Curiosity is part<br />of the <span>process.</span></h2><p>The AI Lab is where we test new ideas, explore emerging technology, and find the next useful thing. Some experiments become products. All of them make us better builders.</p><Link className="text-link" href="/ai-lab">Explore the AI Lab <span>→</span></Link></div><div className="lab-coordinate">RESEARCH / EXPERIMENT / REPEAT</div></section>
 
       <section className="closing-cta"><div className="cta-top"><span>HAVE A GOOD PROBLEM?</span><span>LET&apos;S MAKE SOMETHING USEFUL.</span></div><h2>Let&apos;s build what<br /><span>comes next.</span></h2><div className="cta-bottom"><p>Have a product idea, a workflow that needs a rethink, or a business problem AI might solve? We&apos;d like to hear about it.</p><Link className="button button-dark" href="/contact">Build with Think Zone <Arrow /></Link></div><div className="cta-star">✳</div></section>
 
