@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { BrandFavicon } from "@/components/brand-favicon";
 
 type Message = { id: string; role: "user" | "assistant"; content: string };
 
@@ -52,7 +53,7 @@ export function AIChat() {
   return <section className="assistant-panel" aria-labelledby="assistant-title">
     <div className="assistant-copy"><div className="section-kicker"><span>THINK ZONE / AI ASSISTANT</span></div><h2 id="assistant-title">Ask about the<br /><span>work we do.</span></h2><p>Explore Think Zone&apos;s products, AI capabilities, and how we work with businesses.</p><p className="assistant-privacy">Messages are sent to the configured AI provider to generate a reply. Please don&apos;t share confidential or sensitive information.</p></div>
     <div className="assistant-chat"><div className="assistant-chat-head"><span className="assistant-status"><i /> THINK ZONE ASSISTANT</span><span>PREVIEW</span></div><div className="assistant-messages" aria-live="polite" aria-relevant="additions text">
-      {messages.length === 0 && <div className="assistant-welcome"><span>tz</span><p>{enabled === true ? "Hi. I can help you explore what Think Zone builds and where AI may be useful." : enabled === false ? "The assistant is being prepared. In the meantime, get in touch and we’ll help you find a useful next step." : "Checking assistant availability…"}</p></div>}
+      {messages.length === 0 && <div className="assistant-welcome"><span><BrandFavicon inverse /></span><p>{enabled === true ? "Hi. I can help you explore what Think Zone builds and where AI may be useful." : enabled === false ? "The assistant is being prepared. In the meantime, get in touch and we’ll help you find a useful next step." : "Checking assistant availability…"}</p></div>}
       {messages.map((message) => <div className={`assistant-message ${message.role}`} key={message.id}><span>{message.role === "assistant" ? "THINK ZONE" : "YOU"}</span><p>{message.content}</p></div>)}
       {busy && <div className="assistant-typing" role="status">Thinking<span>…</span></div>}
       {enabled === false && messages.length === 0 && <a className="assistant-contact" href="mailto:info@contact.thinkzone.tech">Contact the team ↗</a>}
