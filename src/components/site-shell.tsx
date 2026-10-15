@@ -18,7 +18,7 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
-  return <footer className="footer"><Link className="brand footer-brand" href="/" aria-label="Think Zone home"><Image className="brand-logo" src="/brand/thinkzone-logo.svg" alt="Think Zone Technology" width={150} height={54} /></Link><p>Intelligent products.<br />Real-world impact.</p><div className="footer-links"><Link href="/solutions">Solutions</Link><Link href="/products">Products</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></div><span className="copyright">© 2026 THINK ZONE LLC</span></footer>;
+  return <footer className="footer"><Link className="brand footer-brand" href="/" aria-label="Think Zone home"><Image className="brand-logo" src="/brand/thinkzone-logo.svg" alt="Think Zone Technology" width={150} height={54} /></Link><p>Intelligent products.<br />Real-world impact.</p><div className="footer-links"><Link href="/solutions">Solutions</Link><Link href="/products">Products</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div><span className="copyright">© 2026 THINK ZONE LLC</span></footer>;
 }
 
 export function PageShell({ children }: { children: React.ReactNode }) {
