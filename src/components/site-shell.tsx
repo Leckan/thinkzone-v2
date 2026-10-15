@@ -40,7 +40,7 @@ export function SiteFooter() {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" /></svg>
         </a>
         <a href="https://www.facebook.com/thinkzone.tech" target="_blank" rel="noopener noreferrer" aria-label="Think Zone on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.74 21v-7.1h2.39l.36-2.78h-2.75V9.35c0-.81.23-1.36 1.38-1.36h1.47V5.5c-.25-.03-1.11-.11-2.12-.11-2.1 0-3.54 1.28-3.54 3.63v2.02H8.56v2.78h2.37V21h2.81ZM12 0C5.37 0 0 5.37 0 12c0 5.99 4.39 10.95 10.13 11.85V15.4H7.65v-3.4h2.48V9.43c0-2.45 1.46-3.81 3.69-3.81 1.07 0 2.19.19 2.19.19v2.4h-1.23c-1.21 0-1.59.75-1.59 1.52V12h2.7l-.43 3.4h-2.27v8.45C18.93 22.95 24 18 24 12 24 5.37 18.63 0 12 0Z" /></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 24V13h3.7l.6-4.3h-4.3V6c0-1.2.4-2 2.1-2h2.3V.2C18.8.1 17.6 0 16.2 0c-4.1 0-6.9 2.5-6.9 7.1v1.6H5.5V13h3.8v11h5.9Z" /></svg>
         </a>
       </nav>
       <span className="copyright">© 2026 THINK ZONE LLC</span>
