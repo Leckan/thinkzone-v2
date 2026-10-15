@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "drizzle-kit generate",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@sentry/nextjs": "^11.0.0",
     "drizzle-orm": "^0.45.3",
-    "next": "16.3.6",
+    "next": "16.4.1",
     "next-sanity": "^13.3.4",
     "openai": "^7.23.0",
     "postgres": "^3.4.9",
